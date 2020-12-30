@@ -21,7 +21,7 @@ app.get('/', async (req, res) => {
         });
         return;
     }
-    
+
     res.status(200);
     res.send(users);
 })
@@ -32,7 +32,7 @@ app.listen(config.API.port, () => {
 
 function request() {
     axios({
-        url: 'https://discord.com/api/v8/guilds/639477525927690240/premium/subscriptions',
+        url: 'https://discord.com/api/v8/guilds/' + config.guildID + '/premium/subscriptions',
         timeout: 5000,
         headers: {
             authorization: config.token
@@ -48,6 +48,8 @@ function request() {
 
         users = temp;
     }).catch(err => {
-        console.log("failed to get boosters");
+        console.log("failed to get boosters" + (err.response != null ? `[${err.response.statusText}]` : ''));
+
+        if (err.response != null && err.response.data != null) console.log(err.response.data);
     })
 }

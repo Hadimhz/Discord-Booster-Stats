@@ -7,7 +7,8 @@ This allows your to check how many time a user boosted your server, feel free to
 
 ## Setup:
 - Clone the repo.
-- configure the application (config.json)
+- configure the application (`config.json`)
+- Install Node Packages. (`npm i`)
 - run the app! `node index.js`
 
 ## Config:

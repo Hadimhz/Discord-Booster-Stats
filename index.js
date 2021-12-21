@@ -32,7 +32,7 @@ app.listen(config.API.port, () => {
 
 function request() {
     axios({
-        url: 'https://discord.com/api/v8/guilds/' + config.guildID + '/premium/subscriptions',
+        url: 'https://discord.com/api/v9/guilds/' + config.guildID + '/premium/subscriptions',
         timeout: 5000,
         headers: {
             authorization: config.token

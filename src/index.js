@@ -1,8 +1,9 @@
 const axios = require('axios');
 const app = require('express')();
+const { timingSafeEqual, createHash } = require('crypto');
 let config = require('./config.json');
-let users = {};
 
+let users = {};
 
 request()
 
@@ -10,11 +11,23 @@ setInterval(() => {
     request()
 }, config.interval);
 
+let configPassword;
+
+if (config.API.password.trim().length != 0)
+    configPassword = createHash("sha1")
+        .update(config.API.password)
+        .digest("hex");
+
+
 app.get('/', async (req, res) => {
     let headers = req.headers;
     console.log('[API]', (req.headers["cf-connecting-ip"] || req.headers["x-forwarded-for"] || req.ip));
 
-    if (config.API.password.trim().length != 0 && (headers.password == null || headers.password != config.API.password)) {
+    if (config.API.password.trim().length != 0 && (headers.password == null
+        || !timingSafeEqual(
+            Buffer.from(createHash("sha1").update(req.headers.password).digest("hex")),
+            Buffer.from(configPassword)))) {
+
         res.status(401);
         res.send({
             error: 'incorrect password'

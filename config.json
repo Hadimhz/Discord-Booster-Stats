@@ -1,9 +1,0 @@
-{
-    "token": "YOUR USER CLIENT",
-    "interval": 10000,
-    "guildID": "GUILDID",
-    "API": {
-        "port": 3000,
-        "password": "This is optional"
-    }
-}

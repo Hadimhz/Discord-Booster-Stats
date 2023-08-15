@@ -1,0 +1,9 @@
+{
+    "token": "YOUR USER TOKEN",
+    "interval": 10000,
+    "guildID": "GUILD TOKEN",
+    "API": {
+        "port": 3000,
+        "password": "LEAVE EMPTY FOR NO PASSWORD"
+    }
+}
